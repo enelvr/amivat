@@ -1,0 +1,54 @@
+*{margin:0;}
+.icono_txt, li.icono_txt
+{ background-color   : transparent;  border: 0;         padding: 1px 1px 1px 18px; text-align: center;    vertical-align: middle;
+  background-position: 0 30%;        font-weight: normal; color: #003399;          font-size: 11px;       text-decoration: none;  
+  cursor: pointer;    background-repeat  : no-repeat;       
+}
+.icono_txt:hover, li.icono_txt:hover { color: #000;}
+.mostrar { background-image: url(../images/mostrar.png); background-repeat : no-repeat; margin-right: 2px;}
+.editar { background-image: url(../images/editar.png); background-repeat : no-repeat; margin-right: 2px;}
+.borrar { background-image: url(../images/borrar.png); background-repeat : no-repeat; margin-right: 2px;}
+.agregar { background-image: url(../images/agregar.png); background-repeat : no-repeat; margin-right: 2px;}
+.director { background-image: url(../images/director.png); background-repeat : no-repeat; margin-right: 2px;}
+.planilla { background-image: url(../images/planilla.png); background-repeat : no-repeat; margin-right: 2px;}
+.lab { background-image: url(../images/lab.png); background-repeat : no-repeat; margin-right: 2px;}
+.equipo { background-image: url(../images/equipo.png); background-repeat : no-repeat; margin-right: 2px;}
+#contenido{
+   background:#fff;
+   margin:20px auto;
+   overflow:hidden;
+   padding:40px ;
+ border:1px solid #2E9AFE;
+ 
+   -webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+input, select{
+   background:#fff;
+   border:1px solid #2E9AFE;
+   padding:5px;
+}
+.titulo{
+   background:#AB0909;/*#1C4583;*/
+   color:#fff;
+   padding:5px;
+   text-align: center
+
+}
+
+footer{
+    background:#AB0909;/*#1C4583;*/
+   color:#fff;
+   padding:5px;
+   text-align: center
+
+}
+footer a{
+    color:#FF8000;
+    text-decoration: none;
+}
+footer a:hover{
+    color:#F2F5A9;
+
+}

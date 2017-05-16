@@ -1,0 +1,148 @@
+<?php
+require_once 'conexion.php';
+class Tecnico {
+	private $id;
+	private $cedula;
+	private $nombre;
+	private $ncargo;
+	private $fcargo;
+	private $titulo;
+	private $tipo_contrato_id;
+	private $cobra;
+	private $telefono;
+	private $correo;
+	const TABLA ='tecnico';
+	public function getId() {
+		return $this->id;
+	}
+	public function getCedula() {
+		return $this->cedula;
+	}
+	public function getNombre() {
+		return $this->nombre;
+	}
+	public function getNcargo() {
+		return $this->ncargo;
+	}
+	public function getFcargo() {
+		return $this->fcargo;
+	}
+	public function getTitulo() {
+		return $this->titulo;
+	}
+	public function getTipo_contrato_id() {
+		return $this->tipo_contrato_id;
+	}
+	public function getCobra() {
+		return $this->cobra;
+	}
+	public function getTelefono() {
+		return $this->telefono;
+	}
+	public function getCorreo() {
+		return $this->correo;
+	}
+
+public function setCedula ($cedula) {
+		$this->cedula = $cedula;
+	}
+public function setNombre ($nombre) {
+		$this->nombre = $nombre;
+	}
+public function setNcargo ($ncargo) {
+		$this->ncargo = $ncargo;
+	}
+public function setFcargo ($fcargo) {
+		$this->fcargo = $fcargo;
+	}
+public function setTitulo ($titulo) {
+		$this->titulo = $titulo;
+	}
+public function setTipo_contrato_id ($tipo_contrato_id) {
+		$this->tipo_contrato_id = $tipo_contrato_id;
+	}
+public function setCobra ($cobra) {
+		$this->cobra = $cobra;
+	}
+public function setTelefono ($telefono) {
+		$this->telefono = $telefono;
+	}
+public function setCorreo ($correo) {
+		$this->correo = $correo;
+	}
+
+public function __construct ($cedula, $nombre, $ncargo, $fcargo, $titulo, $tipo_contrato_id, $cobra, $telefono, $correo, $id=null) {
+		$this->cedula = $cedula;
+		$this->nombre = $nombre;
+		$this->ncargo = $ncargo;
+		$this->fcargo = $fcargo;
+		$this->titulo = $titulo;
+		$this->tipo_contrato_id = $tipo_contrato_id;
+		$this->cobra = $cobra;
+		$this->telefono = $telefono;
+		$this->correo = $correo;
+		$this->id = $id;
+	}
+public function guardar() {
+		$conexion = new Conexion();
+		if($this->id) /*Modifica*/ {
+          $consulta = $conexion->prepare('UPDATE ' . self::TABLA .' Set cedula = :cedula, nombre = :nombre, ncargo = :ncargo, fcargo = :fcargo, titulo = :titulo, tipo_contrato_id = :tipo_contrato_id, cobra = :cobra, telefono = :telefono, correo = :correo WHERE id = :id');
+          $consulta->bindParam(':cedula', $this->cedula);
+	$consulta->bindParam(':nombre', $this->nombre);
+$consulta->bindParam(':ncargo', $this->ncargo);
+$consulta->bindParam(':fcargo', $this->fcargo);
+$consulta->bindParam(':titulo', $this->titulo);
+$consulta->bindParam(':tipo_contrato_id', $this->tipo_contrato_id);
+$consulta->bindParam(':cobra', $this->cobra);
+$consulta->bindParam(':telefono', $this->telefono);
+$consulta->bindParam(':correo', $this->correo);
+          $consulta->bindParam(':id', $this->id);
+          $consulta->execute();
+       }else /*Inserta*/ {
+          $consulta = $conexion->prepare('INSERT INTO ' . self::TABLA .' (cedula, nombre, ncargo, fcargo, titulo, tipo_contrato_id, cobra, telefono, correo) VALUES(:cedula, :nombre, :ncargo, :fcargo, :titulo, :tipo_contrato_id, :cobra, :telefono, :correo)');
+          $consulta->bindParam(':cedula', $this->cedula);
+	$consulta->bindParam(':nombre', $this->nombre);
+	$consulta->bindParam(':ncargo', $this->ncargo);
+	$consulta->bindParam(':fcargo', $this->fcargo);
+	$consulta->bindParam(':titulo', $this->titulo);
+	$consulta->bindParam(':tipo_contrato_id', $this->tipo_contrato_id);
+	$consulta->bindParam(':cobra', $this->cobra);
+	$consulta->bindParam(':telefono', $this->telefono);
+	$consulta->bindParam(':correo', $this->correo);
+          $consulta->execute();
+          $this->id = $conexion->lastInsertId();
+       }
+       $conexion = null;
+    }
+public static function buscarPorTodosss($cedula){
+       $conexion = new Conexion();
+       $consulta = $conexion->prepare('SELECT * FROM ' . self::TABLA . ' where cedula=:cedula');
+	$consulta->bindParam(':cedula', $cedula);
+       $consulta->execute();
+       $registros = $consulta->fetchAll();
+       return $registros;
+    }
+public static function recuperarTodos(){
+       $conexion = new Conexion();
+       $consulta = $conexion->prepare('SELECT id, cedula, nombre FROM ' . self::TABLA . ' ORDER BY cedula');
+       $consulta->execute();
+       $registros = $consulta->fetchAll();
+       return $registros;
+    }
+
+public static function buscarPorId($id){
+       $conexion = new Conexion();
+       $consulta = $conexion->prepare('SELECT id, cedula, nombre, ncargo, fcargo, titulo, tipo_contrato_id, cobra, telefono, correo FROM ' . self::TABLA . ' WHERE id = :id');
+       $consulta->bindParam(':id', $id);
+       $consulta->execute();
+       $registro = $consulta->fetch();
+       if($registro){
+          return new self($registro['cedula'], $registro['nombre'], $registro['ncargo'], $registro['fcargo'], $registro['titulo'], $registro['tipo_contrato_id'], $registro['cobra'], $registro['telefono'], $registro['correo'], $registro['id'], $id);
+       }else{
+          return false;
+       }}
+
+}
+
+
+?>

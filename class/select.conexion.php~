@@ -1,0 +1,12 @@
+<?php
+function conectar()
+{
+	mysql_connect("localhost", "root", "19415101");
+	mysql_select_db("sql");
+}
+
+function desconectar()
+{
+	mysql_close();
+}
+?>

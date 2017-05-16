@@ -1,0 +1,59 @@
+<?php
+session_start();
+class Conectar 
+{
+	public static function con()
+	{	
+		$con=mysql_connect("localhost","root","19415101") or die ('Problemas con la conexion de la base de datos');
+		mysql_query("SET NAMES 'utf8'");
+		mysql_select_db("awminvatzep") or die ('Problemas con la seleccion de la base de datos');
+		return $con;
+	}
+}
+
+class Login
+{
+	public function logueo()
+	{
+		$user=$_POST["usuario"];
+		$pass=$_POST["clave"];
+		
+		$sql="select * from usuario where usuario='$user' and clave='$pass'";
+		$rst=mysql_query($sql,Conectar::con());
+		
+		$num_reg=mysql_num_rows($rst);
+		
+		if ($num_reg>0)
+		{	
+			$_SESSION["awminvatzep"]="";
+			$_SESSION["awminvatzep"]=$user;
+			echo "<script type='text/javascript'>
+			alert('Bienvenido al sistema');
+			window.location='inicio.php';
+			</script>";
+		}
+		else
+		{
+			echo "<script type='text/javascript'>
+			alert('Los datos ingresados no existen en la base de datos, por favor contacte al administrador del sistema');
+			window.location='index.php';
+			</script>";
+		}
+	}
+	
+	public function autenticar()
+	{
+
+		$sql="select * from usuario where usuario='$_SESSION[awminvatzep]'";
+		$rst=mysql_query($sql,Conectar::con());
+		
+		while ($reg=mysql_fetch_array($rst))
+		{
+			$this->tipo=$reg;
+		}
+			return $this->tipo;
+	}
+	
+}
+
+?>

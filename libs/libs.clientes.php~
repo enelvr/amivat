@@ -1,0 +1,117 @@
+<?php
+require_once 'libs/libs.php';
+class Clientes {
+	private $id;
+	private $cedula;
+	private $nombre;
+	private $apellido;
+	private $pais;
+	private $provincia;
+	private $ciudad;
+	private $direccion;
+	private $usuarios_id;
+	const TABLA ='clientes';
+	public function getID() {
+		return $this->id;
+	}
+	public function getCedula() {
+		return $this->cedula;
+	}
+	public function getNombre() {
+		return $this->nombre;
+	}
+	public function getApellido() {
+		return $this->apellido;
+	}
+	public function getPais() {
+		return $this->pais;
+	}
+	public function getProvincia() {
+		return $this->provincia;
+	}
+	public function getCiudad() {
+		return $this->ciudad;
+	}
+public function getDireccion() {
+		return $this->direccion;
+	}
+public function getUsuarios_id() {
+		return $this->usuarios_id;
+	}
+public function setId ($id) {
+		$this->id = $id;
+	}
+	public function setCedula ($cedula) {
+		$this->cedula = $cedula;
+	}
+	public function setNombre ($nombre) {
+		$this->nombre = $nombre;
+	}
+	public function setApellido ($apellido) {
+		$this->apellido = $apellido;
+	}
+	public function setPais ($pais) {
+		$this->pais = $pais;
+	}
+	public function setProvincia ($provincia) {
+		$this->provincia = $provincia;
+	}
+	public function setCiudad ($ciudad) {
+		$this->ciudad = $ciudad;
+	}
+public function setDireccion ($direccion) {
+		$this->direccion = $direccion;
+	}
+public function setUsuarios_id ($usuarios_id) {
+		$this->usuarios_id = $usuarios_id;
+	}
+	public function __construct ($cedula, $nombre, $apellido, $pais, $provincia, $ciudad, $direccion, $usuarios_id, $id) {
+		$this->cedula = $cedula;
+		$this->nombre = $nombre;
+		$this->apellido = $apellido;
+		$this->pais = $pais;
+		$this->provincia= $provincia;
+		$this->ciudad= $ciudad;
+		$this->direccion= $direccion;
+		$this->usuarios_id= $usuarios_id;
+		$this->id = $id;
+
+	}
+
+	public function actualiza() {
+		$conexion = new Conexion();
+          $consulta = $conexion->prepare('UPDATE ' . self::TABLA .' Set cedula = :cedula, nombre = :nombre, apellido = :apellido, pais = :pais, provincia = :provincia, ciudad = :ciudad, direccion = :direccion, usuarios_id = :usuarios_id  WHERE id = :id');
+          $consulta->bindParam(':cedula', $this->cedula);
+	$consulta->bindParam(':nombre', $this->nombre);
+$consulta->bindParam(':apellido', $this->apellido);
+$consulta->bindParam(':pais', $this->pais);
+$consulta->bindParam(':provincia', $this->provincia);
+$consulta->bindParam(':ciudad', $this->ciudad);
+$consulta->bindParam(':direccion', $this->direccion);
+$consulta->bindParam(':usuarios_id', $this->usuarios_id);
+          $consulta->bindParam(':id', $this->id);
+          $consulta->execute();
+}
+public function eliminar($id) {
+$conexion = new Conexion();
+  $consulta = $conexion->prepare('DELETE FROM'. self::TABLA .'WHERE id = :id');
+  $consulta->bindParam(':id', $id);
+          $consulta->execute();
+}
+	
+public static function buscarPorI($id){
+       $conexion = new Conexion();
+       $consulta = $conexion->prepare('SELECT id, cedula, nombre, apellido, pais, provincia, ciudad, direccion, usuarios_id FROM ' . self::TABLA . ' WHERE id = :id');
+       $consulta->bindParam(':id', $id);
+       $consulta->execute();
+       $registro = $consulta->fetch();
+       if($registro){
+          return new self($registro['cedula'], $registro['nombre'], $registro['apellido'], $registro['pais'], $registro['provincia'], $registro['ciudad'],  $registro['direccion'],  $registro['usuarios_id'], $registro['id'], $id);
+       }else{
+          return false;
+       }
+    }
+
+	
+}
+?>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>APLICACION WEB PARA EL MANTENIMIENTO E INVENTARIO DE LAS AREAS TECNOLOGICAS EN LA ZONA EDUCATIVA Y SUS PLANTELES</title>
+        <meta charset="utf-8">
+      
+        <link type="text/css" href="css/estilo.css" rel="stylesheet" />
+     	<link type="text/css" href="css/sclain.css" rel="stylesheet" />
+        <link type="text/css" href="css/tablas.css" rel="stylesheet" />
+	
+        <script type="text/javascript" language="javascript" src="js/jquery.dataTabless.js"></script>
+       <script type="text/javascript"> 
+var $buoop = {}; 
+$buoop.ol = window.onload; 
+window.onload=function(){ 
+ try {if ($buoop.ol) $buoop.ol();}catch (e) {} 
+ var e = document.createElement("script"); 
+ e.setAttribute("type", "text/javascript"); 
+ e.setAttribute("src", "//js/update.js"); 
+ document.body.appendChild(e); 
+} 
+</script> 
+    </head>
+    <body>
+<div id="contenedor">
+<img src="images/barra.png">
+    <header id="encabezado">
+    </header>
+<div class="titulo"></div>
+    <article id="contenido">
+<center>
+<h3>BIENVENIDOS, POR FAVOR LOGEARSE</h3>
+<img src="images/laptop.gif">
+<form id="login" method="POST" action="inicio.php"><BR>
+
+        <input id="usuario" type="text" name="usuario" placeholder="USUARIO" autofocus required>   
+        <input id="clave" type="password" name="clave" placeholder="CLAVE" required>
+	<input type="hidden" name="sisvent" value="enel"/>
+        <input type="submit" id="submit" value="Ingresar">
+</form>
+</center>
+</article>
+    <footer>
+        Desarrollado por <a target="_blank"href="creditos.php">T.S.U. Enel Villafranca</a> en la División de Informática y Sistemas
+    </footer>
+</div>
+</body>
+</html>

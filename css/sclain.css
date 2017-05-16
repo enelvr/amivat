@@ -1,0 +1,102 @@
+
+body {
+margin: 0px;
+padding: 0px;
+background:#F2F2F2;
+color:#084B8A;
+font-size:16px;
+   font-family:Arial;
+}
+
+#contenedor{
+width:960px;
+height:345px;
+}
+
+.height{
+  padding-bottom:20px;
+  height:auto;
+}
+
+.bienvenido{
+height:182px;
+}
+
+#banner {
+width:1024px;
+height:100px;
+border-radius: 10px 10px 0px 0px;
+-moz-border-radius: 10px 10px 0px 0px;
+-webkit-border-radius: 10px 10px 0px 0px;
+background:url(../images/banner4.jpg);
+behavior: url(css/PIE.htc);
+}
+
+#menu{
+width:960px;
+height:32px;
+}
+
+.logueo{
+margin:0 auto;
+padding:20px;
+text-align:center;
+}
+
+h1 {
+text-align:center;
+}
+
+
+html, html *, body, body *  { padding: 0; margin: 0; border: 1; outline: none;  }
+body                        { font: 12px "Lucida Grande", Lucida, Verdana, sans-serif;  overflow-x: hidden; overflow-y: scroll; }
+
+h1, h2, h3, h4, h5, h6  { font-weight:right bolder; color: #003399; padding-top: 1px; padding-bottom: 1px;}
+h1                      { font-size: 140%; }
+h2                      { font-size: 130%; }
+h3                      { font-size: 120%; }
+
+.ancho05                        { width: 05%; }
+.ancho10                        { width: 10%; }
+.ancho15                        { width: 15%; }
+.ancho20                        { width: 20%; }
+.ancho25                        { width: 25%; }
+.ancho30                        { width: 30%; }
+.ancho35                        { width: 35%; }
+.ancho40                        { width: 40%; }
+.ancho50                        { width: 50%; }
+.ancho60                        { width: 60%; }
+.ancho75                        { width: 75%; }
+.ancho100                       { width: 100%; }
+.blanco { padding: 2px 2px 2px 5px; color:#FFF; }
+/* Diseño del LAYOUT */
+#contenedor        { width: 960px;  margin: 0 auto; border: 0; height:auto; }
+#encabezado        { background: transparent url(../images/banner4.jpg) no-repeat center top; width: 960px; height: 100px; border-radius: 10px 10px 0px 0px; }
+.contenidos         { width: 960px; margin: 0 auto; background: #ffffff; padding-top: 10px; padding-bottom: 10px; background-image: url(/images/16_col.gif); background-repeat: repeat-y;}
+#contenedor_pie    { background: url(../imagen/layout/menu.png); background-repeat: repeat-x; width: 960px; height: 22px; position: absolute; bottom: 0; }
+#pie               { font-size: 85%; color: #FFFFFF; font-weight: normal; text-align: center; padding: 3px;}
+
+.flotar-izq    { display: block; float: left; }
+.flotar-der    { display: block; float: right; }
+.alinear-izq   { text-align: left; }
+.alinear-der   { text-align: right; }
+.alinear-cen   { text-align: center; }
+.alinear-jus   { text-align : justify; }
+
+.logueado
+{   padding: 0; margin: 0;
+    position: relative; top:-26px; float:right; padding-right:20px;
+}
+
+.logueado a
+{   font: "Lucida Grande", Lucida, Verdana, sans-serif; 
+    font-size: 13px;
+    cursor: pointer; 
+	font-weight:bold;
+    text-decoration: none; display: inline; color: #FFFFFF; 
+}
+.logueado a:hover
+{   color: #58ACFA; 
+}
+
+

@@ -1,0 +1,95 @@
+<?php
+require_once 'libs/libs.php';
+class Usuarios {
+	private $id;
+	private $cedula;
+	private $nombre;
+	private $apellido;
+	private $telefono;
+	private $correo;
+	private $usuario;
+	private $clave;
+	private $tipousuarios_id;
+	const TABLA ='usuarios';
+	public function getID() {
+		return $this->id;
+	}
+	public function getCedula() {
+		return $this->cedula;
+	}
+	public function getNombre() {
+		return $this->nombre;
+	}
+	public function getApellido() {
+		return $this->apellido;
+	}
+	public function getTelefono() {
+		return $this->telefono;
+	}
+	public function getCorreo() {
+		return $this->correo;
+	}
+	public function getUsuario() {
+		return $this->usuario;
+	}
+public function getClave() {
+		return $this->clave;
+	}
+public function getTipousuarios_id() {
+		return $this->tipousuarios_id;
+	}
+public function setId ($id) {
+		$this->id = $id;
+	}
+	public function setCedula ($cedula) {
+		$this->cedula = $cedula;
+	}
+	public function setNombre ($nombre) {
+		$this->nombre = $nombre;
+	}
+	public function setApellido ($apellido) {
+		$this->apellido = $apellido;
+	}
+	public function setTelefono ($telefono) {
+		$this->telefono = $telefono;
+	}
+	public function setCorreo ($correo) {
+		$this->correo = $correo;
+	}
+	public function setUsuario ($usuario) {
+		$this->usuario = $usuario;
+	}
+public function setClave ($clave) {
+		$this->clave = $clave;
+	}
+public function setTipousuarios_id ($tipousuarios_id) {
+		$this->tipousuarios_id = $tipousuarios_id;
+	}
+	public function __construct ($cedula, $nombre, $apellido, $telefono, $correo, $usuario, $clave, $tipousuarios_id, $id) {
+		$this->cedula = $cedula;
+		$this->nombre = $nombre;
+		$this->apellido = $apellido;
+		$this->telefono = $telefono;
+		$this->correo= $correo;
+		$this->usuario= $usuario;
+		$this->clave= $clave;
+		$this->tipousuarios_id= $tipousuarios_id;
+		$this->id = $id;
+	}
+	
+public static function buscarPorI($tipousuarios_id){
+       $conexion = new Conexion();
+       $consulta = $conexion->prepare('SELECT id, cedula, nombre, apellido, telefono, correo, usuario, clave, tipousuarios_id FROM ' . self::TABLA . ' WHERE tipousuarios_id = :tipousuarios_id');
+       $consulta->bindParam(':tipousuarios_id', $tipousuarios_id);
+       $consulta->execute();
+       $registro = $consulta->fetch();
+       if($registro){
+          return new self($registro['cedula'], $registro['nombre'], $registro['apellido'], $registro['telefono'], $registro['correo'], $registro['usuario'],  $registro['clave'],  $registro['tipousuarios_id'], $registro['id'], $tipousuarios_id);
+       }else{
+          return false;
+       }
+    }
+
+	
+}
+?>

@@ -1,0 +1,2 @@
+INSERT INTO `tipoplantel` (`id`, `descripcion`) VALUES
+(1, 'Z.E.M.');

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>APLICACION WEB PARA EL MANTENIMIENTO E INVENTARIO DE LAS AREAS TECNOLOGICAS EN LA ZONA EDUCATIVA Y SUS PLANTELES</title>
+        <meta charset="utf-8">
+    <script type="text/javascript" src="js/tcal.js"></script> 
+  <link rel="stylesheet" href="css/tablas2.css">
+    </head>
+    <body>
+<form id="imprimir" method="POST" action="reportesdiv.php"><BR>
+
+	Desde <input class="tcal" type="date" name="fecha" size="15px" required> 
+	Hasta <input class="tcal" type="date" name="dfecha" size="15px" required>
+	<input type="hidden" name="consulta" value="consulta"/>
+        <input type="submit" id="submit" value="Mostrar">
+</form>
+<?php if (isset($_POST["consulta"]) and $_POST["consulta"]=="consulta")
+{
+
+?><BR>
+<div align="center">
+<table border="0" width="850px">
+  <tr>
+ </tr>
+
+                    <tr>
+                      
+                       <th>CPU OPERATIVOS</th>
+			<th>IMPRESORAS OPERATIVAS</th>
+			<th>MONITORES OPERATIVOS</th>
+		
+                    </tr>
+   
+<tr>
+
+<td align="center"><?php
+require_once 'class/requipo.class.php';
+
+ $requipo = Requipo::buscarPorFechasenel($_POST['fecha'],$_POST['dfecha']);
+$countequ="0";
+foreach($requipo as $item):
+$n=$item['estatus_id'];
+
+if($n=="1"){
+ $countequ =count($item['fecha'])+$countequ;
+}
+endforeach;
+echo $countequ;
+
+ ?></td>
+<td align="center">
+<?php
+require_once 'class/rimpresora.class.php';
+
+ $rimpresora = Rimpresora::buscarPorFechasenel($_POST['fecha'],$_POST['dfecha']);
+$countimpre="0";
+ foreach($rimpresora as $item):
+$in=$item['estatus_id'];
+if($in=="1"){
+ $countimpre =count($item['fecha'])+$countimpre;
+}
+endforeach;
+echo $countimpre;
+
+
+ ?>
+
+</td>
+<td align="center">
+<?php
+require_once 'class/rmonitor.class.php';
+
+ $rmonitor = Rmonitor::buscarPorFechasenel($_POST['fecha'],$_POST['dfecha']);
+$countmoni="0";
+ foreach($rmonitor as $item):
+$im=$item['estatus_id'];
+if($im=="1"){
+ $countmoni =count($item['fecha'])+$countmoni;
+}
+endforeach;
+echo $countmoni;
+ ?>
+
+</td>
+</tr>
+</table>
+
+<BR>
+<table border="0" width="850px">
+<tr>
+</tr>
+                    <tr>
+                  	 
+                       <th>CPU INOPERATIVOS</th>
+			<th>IMPRESORAS INOPERATIVAS</th>
+			<th>MONITORES INOPERATIVOS</th>
+		
+                    </tr>
+
+<tr>
+
+<td align="center">
+<?php
+ $requipo = Requipo::buscarPorFechassenel($_POST['fecha'],$_POST['dfecha']);
+$counteque ="0";
+ foreach($requipo as $item):
+$eq=$item['estatus_id'];
+if($eq!="1"){
+ $counteque =count($item['fecha'])+$counteque;
+}
+endforeach;
+echo $counteque;
+?>
+</td>
+<td align="center">
+<?php
+ $rimpresora = Rimpresora::buscarPorFechassenel($_POST['fecha'],$_POST['dfecha']);
+$countimprei="0";
+ foreach($rimpresora as $item):
+$mi=$item['estatus_id'];
+if($mi!="1"){
+ $countimprei =count($item['fecha'])+$countimprei;
+}
+endforeach;
+echo $countimprei;
+ ?>
+
+</td>
+<td align="center">
+<?php
+
+
+ $rmonitor = Rmonitor::buscarPorFechassenel($_POST['fecha'],$_POST['dfecha']);
+$countmonim="0";
+foreach($rmonitor as $item):
+$mo=$item['estatus_id'];
+if($mo!="1"){
+ $countmonim =count($item['fecha'])+$countmonim;
+}
+endforeach;
+echo $countmonim;
+?>
+
+</td>
+</tr>
+</table>
+<?php }?>
+<div align="center">
+<form id="form1" name="form1" method="post" action=""><br><br>
+<label>
+<input type="button" name="imprimir" id="imprimir" value="Imprimir" onClick="window.print();" />
+</label>
+</form>
+
+
+</div>
+</body>
+</html>
